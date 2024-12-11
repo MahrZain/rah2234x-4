@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Interactive Home Page</title>
+    <style>
+        :root {
+            /* Defining CSS variables for colors and fonts */
+            --text-animation-color-start: rgba(255,0,0,1);
+            --text-animation-color-middle: rgba(0,255,0,1);
+            --text-animation-color-end: rgba(0,0,255,1);
+            --background-dark: #121212;
+            --font-family-default: 'Arial', sans-serif;
+        }
+        .container{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        /* Basic reset and full height layout */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif; /* Using Arial as the font */
+            color: #fff; /* Light text on dark background */
+        }
+
+        /* Static gradient background */
+/* Dark mode gradient background */
+.background {
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+        /* Content box styling */
+        .content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            color: #333;
+            text-align: center;
+        }
+
+        /* Form input and button styling */
+        input[type="text"], button {
+            padding: 12px;
+            margin: 8px 0;
+            width: calc(100% - 24px);
+            display: block;
+            border-radius: 4px;
+        }
+
+        /* Styling radio buttons with labels to the right */
+        .radio-group {
+            text-align: left;
+            margin: 10px 0;
+        }
+
+        .radio-group input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .nc-animated-title {
+            
+            margin-top: 10%;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--background-dark);
+            color: white;
+            font-family: var(--font-family-default);
+            font-size: 20px;
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--text-animation-color-start), var(--text-animation-color-middle), var(--text-animation-color-end));
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: nc-slide-colors 5s ease infinite;
+        }
+
+        @keyframes nc-slide-colors {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .radio-group label {
+            display: block; /* Each label on a new line */
+        }
+
+        /* Button styling */
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive adjustments for small screens */
+        @media (max-width: 600px) {
+            .content {
+                padding: 15px;
+            }
+        }
+
+        /* RGB running colors effect */
+        h1 {
+            background: linear-gradient(90deg, rgba(255,0,0,1), rgb(212, 13, 179), rgba(0,0,255,1));
+            background-size: 200% auto;
+            color: #000;
+            background-clip: text;
+            text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow 3s linear infinite;
+        }
+
+        @keyframes rainbow { 
+            0%{background-position:0% 50%}
+            50%{background-position:100% 50%}
+            100%{background-position:0% 50%}
+        }
+
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="content">
+            <h1>Enter IP</h1>
+            <form id="userForm">
+                <input type="text" id="userInput" placeholder="Enter your text here" required>
+                <div class="container">
+
+                    <div class="radio-group">
+                        <input type="radio" id="clickOption" name="actionType" value="Click" checked>
+                        <label for="clickOption">Click</label>
+                    </div>
+                    <div class="radio-group">
+                        <input type="radio" id="sessionOption" name="actionType" value="Session">
+                        <label for="sessionOption">Session</label>
+                    </div>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <div id="submissionCount">Submissions: 0</div>
+            <div style="margin-top:5%; display: flex; align-items: center;" class="container">
+                <div style="font-size: large; margin-right: 10px;">Made With Love by</div>
+                <a style="text-decoration: none;" href="https://linktr.ee/nullxco"><div class="nc-animated-title">NullxCoder</div></a>
+            </div>
+        </div>
+        
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById('userForm');
+            const submissionCount = document.getElementById('submissionCount');
+            let count = 0;
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the actual form submission
+                count++;
+                submissionCount.innerText = 'Submissions: ' + count;
+
+                // Clear the input after submission
+                document.getElementById('userInput').value = '';
+            });
+        });
+    </script>
+</body>
+</html>
