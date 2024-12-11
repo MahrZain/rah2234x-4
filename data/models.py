@@ -6,6 +6,8 @@ class CustomUser(models.Model):
         ('Session', 'Session'),  # First value stored in DB, second displayed in forms/admin
         ('Click', 'Click'),
     )
+    class Meta:
+        verbose_name_plural = 'Users Data'
 
     IP = models.CharField(max_length=255)  # Field for storing IP addresses
     type = models.CharField(max_length=255, choices=USER_CHOICE)  # Dropdown for type
