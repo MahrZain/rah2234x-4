@@ -20,6 +20,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'data',
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -126,55 +127,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 JAZZMIN_SETTINGS = {
-    "site_title": "Admin",
-    "site_header": "Administration",
-    "site_brand": "Admin Portal",
-    "welcome_sign": "Welcome toadmin interface",
-    "search_model": "auth.User",
-    "user_avatar": None,
-    
-"theme": "slate", 
-    
-    "custom_links": {
-        "users": [
-            {"name": "Home", "url": "custom-url", "permissions": ["auth.view_user"]},
-            {"model": "auth.user"}
-        ]
-    }
-}
-JAZZMIN_UI_TWEAKS = {
-        # Site title, header, and brand are all customizable
-    "site_title": "Zain Admin Portal",
-    "site_header": "Zain Administration",
-    "site_brand": "Zain",
-    "navbar_small_text": False,
-    "footer_small_text": False,
-    "body_small_text": False,
-    "brand_small_text": False,
-    "brand_colour": "navbar-dark",
-    "accent": "accent-warning",
-    "navbar": "navbar-gray-dark navbar-dark",
-    "no_navbar_border": False,
-    "navbar_fixed": True,
-    "layout_boxed": False,
-    "footer_fixed": False,
-    "sidebar_fixed": True,
-    "sidebar": "sidebar-dark-warning",
-    "sidebar_nav_small_text": False,
-    "sidebar_disable_expand": False,
-    "sidebar_nav_child_indent": False,
-    "sidebar_nav_compact_style": False,
-    "sidebar_nav_legacy_style": False,
-    "sidebar_nav_flat_style": False,
-    "theme": "cyborg",
-    "dark_mode_theme": "cyborg",
-    "button_classes": {
-        "primary": "btn-primary",
-        "secondary": "btn-secondary",
-        "info": "btn-info",
-        "warning": "btn-warning",
-        "danger": "btn-danger",
-        "success": "btn-success"
-    },
-    "actions_sticky_top": False
+    "site_title": "Admin",         # Title shown in the browser tab
+    "site_header": "Admin",  # Header text displayed in the top bar
+    "welcome_sign": "Welcome to Admin", # Text displayed on the welcome screen
+    "site_brand": "Admin",           # Name shown on the brand/logo area
 }
