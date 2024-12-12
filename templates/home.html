@@ -135,7 +135,7 @@
             width: 9vw;
         }
         .log-out{
-            margin-top:6%;
+            margin-top:1%;
         }
         .log-out a{
             text-decoration: none;
@@ -232,6 +232,7 @@
                 opacity: 0;
             }
         }
+        
 
     </style>
 </head>
@@ -267,6 +268,9 @@
             <div style="margin-top:5%; display: flex; align-items: center;" class="container nc1">
                 <div style="font-size: large; margin-right: 10px;">Made With ❤️ by</div>
                 <a style="text-decoration: none;" href="https://linktr.ee/nullxco"><div class="nc-animated-title">NullxCoder</div></a>
+            </div>
+            <div class="container nc2">
+                <h4>Welcome, {{ user.name|default:user.username|default:"Guest" }}</h4>
             </div>
             <div class="container log-out">
                 <a href="{% url 'logout-user' %}"><button  type="button" class="btn btn-warning">Logout</button></a>
