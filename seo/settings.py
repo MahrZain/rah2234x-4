@@ -137,8 +137,7 @@ JAZZMIN_SETTINGS = {
         "auth": "fas fa-users-cog",          # For the 'auth' app
         "auth.user": "fas fa-user",          # For the User model in auth
         "auth.group": "fas fa-users",        # For the Group model in auth
-        "myapp": "fas fa-briefcase",         # For all models in myapp
-        "myapp.MyModel": "fas fa-anchor",    # For a specific model in myapp
+        "data.CustomUser": "fas fa-database",  # For a specific model in myapp
     }
 }
 
