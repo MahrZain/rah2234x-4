@@ -248,17 +248,17 @@
         {% endfor %}
     {% endif %}
             <h1>Enter IP</h1>
-            <form id="userForm">
+            <form  action="{% url 'home' %}" method="POST">
                 {% csrf_token %}
-                <input type="text" id="userInput" placeholder="Enter your IP here" required>
+                <input name="ip" type="text" id="userInput" placeholder="Enter your IP here" required>
                 <div class="container">
 
                     <div class="radio-group">
-                        <input type="radio" id="clickOption" name="actionType" value="Click" checked>
+                        <input name="actiontype" type="radio" id="clickOption" name="actionType" value="Click" checked>
                         <label for="clickOption">Click</label>
                     </div>
                     <div class="radio-group">
-                        <input type="radio" id="sessionOption" name="actionType" value="Session">
+                        <input name="actiontype" type="radio" id="sessionOption" name="actionType" value="Session">
                         <label for="sessionOption">Session</label>
                     </div>
                 </div>

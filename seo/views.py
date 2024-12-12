@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from throttle.decorators import throttle
+from data.models import CustomUser
 from django.contrib.auth import authenticate, login as auth_login,logout as auth_logout
 @login_required(login_url='login')
 def home(request):
@@ -11,7 +12,33 @@ def home(request):
         return render(request, 'home.html', {'user': request.user})
     else:
         return render(request, 'login.html')
-    
+def home(request):
+    if request.method == 'POST':
+        ip = request.POST.get('ip')
+        action_type = request.POST.get('actiontype')
+
+        # Validate input
+        if not ip or not action_type:
+            messages.error(request, 'Please enter both IP address and action type.')
+            return render(request, 'home.html')
+
+        # Check if the IP already exists in the database
+        existing_entry = CustomUser.objects.filter(IP=ip).first()
+        if existing_entry:
+            messages.error(request, f"IP address '{ip}' already exists with action type '{existing_entry.type}'.")
+            return render(request, 'home.html')
+
+        # If IP doesn't exist, save the new entry
+        try:
+            custom_user = CustomUser(user=request.user, IP=ip, type=action_type)
+            custom_user.save()
+            messages.success(request, "Submission Successful!")
+        except Exception as e:
+            messages.error(request, f"An error occurred while saving: {e}")
+        
+        return render(request, 'home.html')
+
+    return render(request, 'home.html')
 
 def login(request):
     if request.user.is_authenticated:
