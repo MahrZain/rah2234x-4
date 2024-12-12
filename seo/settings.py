@@ -132,7 +132,14 @@ JAZZMIN_SETTINGS = {
     "site_title": "Admin",         # Title shown in the browser tab
     "site_header": "Admin",  # Header text displayed in the top bar
     "welcome_sign": "Welcome to Admin", # Text displayed on the welcome screen
-    "site_brand": "Admin",           # Name shown on the brand/logo area
+    "site_brand": "Admin", 
+    "icons": {
+        "auth": "fas fa-users-cog",          # For the 'auth' app
+        "auth.user": "fas fa-user",          # For the User model in auth
+        "auth.group": "fas fa-users",        # For the Group model in auth
+        "myapp": "fas fa-briefcase",         # For all models in myapp
+        "myapp.MyModel": "fas fa-anchor",    # For a specific model in myapp
+    }
 }
 
 THROTTLE_ZONES = {
@@ -155,3 +162,4 @@ THROTTLE_REDIS_AUTH = 'pass'
 
 # Normally, throttling is disabled when DEBUG=True. Use this to force it to enabled.
 THROTTLE_ENABLED = True
+
