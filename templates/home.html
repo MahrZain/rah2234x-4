@@ -68,9 +68,11 @@
             margin-right: 10px;
             cursor: pointer;
         }
+        .nc1{
+            justify-content: center !important;
+        }
         .nc-animated-title {
-            
-            margin-top: 10%;
+            margin-top: 2% !important;
             margin: 0;
             padding: 0;
             height: 100%;
@@ -115,12 +117,33 @@
         }
 
         /* Responsive adjustments for small screens */
-        @media (max-width: 600px) {
+        @media (max-width: 610px) {
             .content {
                 padding: 15px;
             }
+            .btn-warning {
+                width: 20vw !important;
+            }
+            
         }
-
+        @media (width: 500px) {
+            .btn-warning {
+                width: 20vw !important;
+            }
+        }
+        .btn-warning{
+            width: 9vw;
+        }
+        .log-out{
+            margin-top:6%;
+        }
+        .log-out a{
+            text-decoration: none;
+        }
+        .submissionCount{
+            color: red;
+            font-weight: 600;
+        }
         /* RGB running colors effect */
         h1 {
             background: linear-gradient(90deg, rgba(255,0,0,1), rgb(212, 13, 179), rgba(0,0,255,1));
@@ -146,7 +169,7 @@
         <div class="content">
             <h1>Enter IP</h1>
             <form id="userForm">
-                <input type="text" id="userInput" placeholder="Enter your text here" required>
+                <input type="text" id="userInput" placeholder="Enter your IP here" required>
                 <div class="container">
 
                     <div class="radio-group">
@@ -160,10 +183,13 @@
                 </div>
                 <button type="submit">Submit</button>
             </form>
-            <div id="submissionCount">Submissions: 0</div>
-            <div style="margin-top:5%; display: flex; align-items: center;" class="container">
-                <div style="font-size: large; margin-right: 10px;">Made With Love by</div>
+            <div class="submissionCount" id="submissionCount">Today Submissions: 0</div>
+            <div style="margin-top:5%; display: flex; align-items: center;" class="container nc1">
+                <div style="font-size: large; margin-right: 10px;">Made With ❤️ by</div>
                 <a style="text-decoration: none;" href="https://linktr.ee/nullxco"><div class="nc-animated-title">NullxCoder</div></a>
+            </div>
+            <div class="container log-out">
+                <a href=""><button  type="button" class="btn btn-warning">Logout</button></a>
             </div>
         </div>
         
