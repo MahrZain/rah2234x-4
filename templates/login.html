@@ -96,15 +96,94 @@
             50%{background-position:100% 50%}
             100%{background-position:0% 50%}
         }
+        .alert {
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            font-size: 16px;
+            text-align: center;
+            position: fixed;
+            top: -100px; /* Start hidden above the viewport */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Alert Types */
+        .alert-success {
+            background-color: #d4edda; /* Green background for success */
+            border-color: #c3e6cb; /* Green border */
+            color: #155724; /* Dark green text */
+        }
+
+        .alert-error {
+            background-color: #f8d7da; /* Red background for error */
+            border-color: #f5c6cb; /* Red border */
+            color: #721c24; /* Dark red text */
+        }
+
+        .alert-warning {
+            background-color: #fff3cd; /* Yellow background for warning */
+            border-color: #ffeeba; /* Yellow border */
+            color: #856404; /* Dark yellow text */
+        }
+
+        /* Animation for Alerts */
+        .animated-alert {
+            animation: slideIn 0.5s ease, stayVisible 3s ease 0.5s, slideOut 0.5s ease 3.5s;
+        }
+
+        @keyframes slideIn {
+            0% {
+                top: -100px; /* Start above the viewport */
+                opacity: 0;
+            }
+            100% {
+                top: 20px; /* End position in viewport */
+                opacity: 1;
+            }
+        }
+
+        @keyframes stayVisible {
+            0% {
+                top: 20px;
+                opacity: 1;
+            }
+            100% {
+                top: 20px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            0% {
+                top: 20px;
+                opacity: 1;
+            }
+            100% {
+                top: -100px; /* Slide back above the viewport */
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="content">
         <h1 style="text-align: center;">Login</h1>
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert animated-alert 
+                {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
         <form id="loginForm" action="{% url 'login-user' %}" method="post">
             {% csrf_token %}
-            <input type="text" id="username" placeholder="Username" required>
-            <input type="password" id="password" placeholder="Password" required>
+            <input type="text" name="username" id="username" placeholder="Username" required>
+            <input type="password" name="password" id="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
         <div style="margin-top:5%; display: flex; align-items: center;" class="container">
@@ -113,5 +192,14 @@
         </div>
         
     </div>
+    <script>
+        // Automatically remove the alert after the animation completes
+        setTimeout(() => {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                alert.remove(); // Remove alert from DOM
+            });
+        }, 4000); // 0.5s slide in + 3s stay visible + 0.5s slide out = 4s total
+    </script>
 </body>
 </html>

@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from throttle.decorators import throttle
-from django.contrib.auth import authenticate, login,logout as auth_logout
+from django.contrib.auth import authenticate, login as auth_login,logout as auth_logout
 @login_required(login_url='login')
 def home(request):
     if request.user.is_authenticated:
@@ -36,7 +36,7 @@ def login_request(request):
         if user is not None:
             auth_login(request, user)  
             messages.success(request, "Login Successful!")
-            return redirect('home')
+            return render(request, 'home.html')
         else:
             messages.error(request, "Login Failed! Check Your Credentials!")
             return render(request, 'login.html') 
@@ -48,6 +48,6 @@ def logout(request):
         auth_logout(request)
         request.session.flush()
         messages.success(request, "Logout Successful!")
-        return redirect('login')
+        return redirect('login-user')
     else:
         return render(request, 'login.html')
