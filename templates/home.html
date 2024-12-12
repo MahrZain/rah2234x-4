@@ -266,7 +266,7 @@
             </form>
             {% if user.is_authenticated %}
             <div class="submissionCount" id="submissionCount">
-                {% if user.customuser %}
+                {% if user.customuser or data %}
                     Today Submissions: {{ user.customuser.submission_count }} {{ data }}
                 {% else %}
                     Today Submissions: 0
