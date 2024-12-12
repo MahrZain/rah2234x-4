@@ -264,7 +264,15 @@
                 </div>
                 <button type="submit">Submit</button>
             </form>
-            <div class="submissionCount" id="submissionCount">Today Submissions: 0</div>
+            {% if user.is_authenticated %}
+            <div class="submissionCount" id="submissionCount">
+                {% if user.customuser %}
+                    Today Submissions: {{ user.customuser.submission_count }} {{ data }}
+                {% else %}
+                    Today Submissions: 0
+                {% endif %}
+            </div>
+        {% endif %}
             <div style="margin-top:5%; display: flex; align-items: center;" class="container nc1">
                 <div style="font-size: large; margin-right: 10px;">Made With ❤️ by</div>
                 <a style="text-decoration: none;" href="https://linktr.ee/nullxco"><div class="nc-animated-title">NullxCoder</div></a>

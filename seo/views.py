@@ -15,6 +15,7 @@ def home(request):
 def home(request):
     if request.method == 'POST':
         ip = request.POST.get('ip')
+        submission = CustomUser.objects.all()
         action_type = request.POST.get('actiontype')
 
         # Validate input
@@ -31,6 +32,7 @@ def home(request):
         # If IP doesn't exist, save the new entry
         try:
             custom_user = CustomUser(user=request.user, IP=ip, type=action_type)
+            # print(submission_count)
             custom_user.save()
             messages.success(request, "Submission Successful!")
         except Exception as e:
