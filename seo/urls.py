@@ -11,7 +11,8 @@ urlpatterns = [
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('login/', views.login, name='login'),
+    path('login-user/', views.login_request, name='login-user'),
+    path('logout-user/', views.logout, name='logout-user'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

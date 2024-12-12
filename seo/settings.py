@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'throttle',
 ]
 
 MIDDLEWARE = [
@@ -38,6 +39,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'seo.urls'
@@ -132,3 +134,24 @@ JAZZMIN_SETTINGS = {
     "welcome_sign": "Welcome to Admin", # Text displayed on the welcome screen
     "site_brand": "Admin",           # Name shown on the brand/logo area
 }
+
+THROTTLE_ZONES = {
+    'default': {
+        'VARY': 'throttle.zones.RemoteIP',
+        'ALGORITHM': 'fixed-bucket',
+        'BUCKET_INTERVAL': 15 * 60,
+        'BUCKET_CAPACITY': 10,
+    },
+}
+
+# Where to store request counts.
+THROTTLE_BACKEND = 'throttle.backends.cache.CacheBackend'
+
+# Optional if Redis backend is chosen ('throttle.backends.redispy.RedisBackend')
+THROTTLE_REDIS_HOST = 'localhost'
+THROTTLE_REDIS_PORT = 6379
+THROTTLE_REDIS_DB = 0
+THROTTLE_REDIS_AUTH = 'pass'
+
+# Normally, throttling is disabled when DEBUG=True. Use this to force it to enabled.
+THROTTLE_ENABLED = True

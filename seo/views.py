@@ -1,22 +1,25 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.http import HttpResponse
+from throttle.decorators import throttle
+from django.contrib.auth import authenticate, login,logout as auth_logout
 @login_required(login_url='login')
 def home(request):
     if request.user.is_authenticated:
         return render(request, 'home.html')
     else:
         return render(request, 'login.html')
+    
+
 def login(request):
     if request.user.is_authenticated:
         return redirect('home')
     else:
         return render(request, 'login.html')
     
-
+@throttle(zone='default')
 def login_request(request):
     if request.user.is_authenticated:
         return redirect('home') 
@@ -40,3 +43,11 @@ def login_request(request):
 
 
     return render(request, 'login.html')
+def logout(request):
+    if request.user.is_authenticated:
+        auth_logout(request)
+        request.session.flush()
+        messages.success(request, "Logout Successful!")
+        return redirect('login')
+    else:
+        return render(request, 'login.html')
