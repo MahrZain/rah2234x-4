@@ -10,7 +10,7 @@ from data.models import CustomUser
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.utils import timezone
 
-@login_required(login_url='login')
+@login_required(login_url='login-user')
 def home(request):
     if request.method == 'POST':
         ip = request.POST.get('ip')
@@ -31,7 +31,6 @@ def home(request):
         try:
             custom_user = CustomUser(user=request.user, IP=ip, type=action_type)
             custom_user.save()
-            # Count how many submissions the user has made today
             today = timezone.now().date()
             daily_count = CustomUser.objects.filter(user=request.user, created_at__date=today).count()
             messages.success(request, f"Submission Successful! You have made {daily_count} submissions today.")
@@ -40,7 +39,6 @@ def home(request):
         
         return render(request, 'home.html',{'data': daily_count})
     
-    # If GET request, just show the home page
     return render(request, 'home.html')
 
 

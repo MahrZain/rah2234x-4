@@ -293,22 +293,20 @@
             let count = 0;
 
             form.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent the actual form submission
+                event.preventDefault(); 
                 count++;
                 submissionCount.innerText = 'Submissions: ' + count;
 
-                // Clear the input after submission
                 document.getElementById('userInput').value = '';
             });
         });
 
-            // Automatically remove the alert after the animation completes
             setTimeout(() => {
                 const alerts = document.querySelectorAll('.alert');
                 alerts.forEach(alert => {
-                    alert.remove(); // Remove alert from DOM
+                    alert.remove(); 
                 });
-            }, 4000); // 0.5s slide in + 3s stay visible + 0.5s slide out = 4s total
+            }, 4000); 
         
     </script>
 </body>
