@@ -21,6 +21,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'data',
+    'api',
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -29,6 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'throttle',
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -162,3 +165,14 @@ THROTTLE_REDIS_AUTH = 'pass'
 # Normally, throttling is disabled when DEBUG=True. Use this to force it to enabled.
 THROTTLE_ENABLED = True
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}

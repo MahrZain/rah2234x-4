@@ -11,6 +11,7 @@ urlpatterns = [
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
+    path('api/', include('api.urls')),
     path('login-user/', views.login_request, name='login-user'),
     path('logout-user/', views.logout, name='logout-user'),
 ]
